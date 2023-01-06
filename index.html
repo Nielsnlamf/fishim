@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Fishim!</title>
+</head>
+
+<body>
+    <div class="pond" id="pond">
+        <div class="boat" id="boat"></div>
+        <input type="button" id="fishButton" class="fishButton" value="Catch a fish?" />
+        <div class="popup" id="popup">
+            <h1>You caught a fish!</h1>
+            <div class="fish">
+                <div id="fishtail" class="fishtail fishpart"></div>
+                <div id="fishbody" class="fishbody fishpart"></div>
+            </div>
+            <table>
+                <tr id="lengthrow">
+                    <th>Length:</td>
+                </tr>
+                <tr id="typerow">
+                    <th>Type:</td>
+                </tr>
+                <tr id="patternrow">
+                    <th>Pattern:</td>
+                </tr>
+                <tr id="colorrow">
+                    <th>Color:</td>
+                </tr>
+            </table>
+            <div class="buttons">
+                <input type="button" value="Add to favorites" />
+                <input type="button" onclick="throwBack()" id="throwButton" value="Throw back" />
+            </div>
+        </div>
+        <div id="spot" class="spot"></div>
+        <div id="spot" class="spot"></div>
+        <div id="spot" class="spot"></div>
+        <div id="spot" class="spot"></div>
+        <div id="spot" class="spot"></div>
+    </div>
+    <script src="main.js"></script>
+    <script src="fish.js"></script>
+</body>
+
+</html>
