@@ -6,6 +6,7 @@ const fishButton = document.getElementById("fishButton")
 let boatMovable = true
 let rotateLock = false
 let hasClickListener
+let currentSpot = null
 
 document.addEventListener("mousemove", e => {
     mouseX = e.clientX
@@ -54,6 +55,7 @@ setInterval(() => {
         if (!fishing) {
             if (checkOverlap(boat, e)) {
                 overlap = true
+                currentSpot = e
                 moveButton(e)
             } if (!overlap) {
                 fishButton.style.display = "none"
@@ -106,7 +108,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const e = document.querySelectorAll("#spot")[i]
         moveSpot(e)
         for (let i = 0; i < document.querySelectorAll("#spot").length; i++) {
-            checkOverlap(e, document.querySelectorAll("#spot")[i]) ? moveSpot(e) :{} 
+            checkOverlap(e, document.querySelectorAll("#spot")[i]) ? moveSpot(e) : {}
         }
     }
 })

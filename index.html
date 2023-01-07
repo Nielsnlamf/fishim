@@ -13,6 +13,11 @@
     <div class="pond" id="pond">
         <div class="boat" id="boat"></div>
         <input type="button" id="fishButton" class="fishButton" value="Catch a fish?" />
+        <div class="gamePopup" id="gamePopup">
+        <input style="position: absolute;" type="button" onclick="gameFinished()"/>
+            <canvas id="game">
+            </canvas>
+        </div>
         <div class="popup" id="popup">
             <h1>You caught a fish!</h1>
             <div class="fish">
@@ -46,6 +51,7 @@
     </div>
     <script src="main.js"></script>
     <script src="fish.js"></script>
+    <script src="game.js"></script>
 </body>
 
 </html>

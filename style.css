@@ -20,6 +20,17 @@ input {
     left: 50%;
     transform: translateX(-50%);
 }
+.gamePopup {
+    position: absolute;
+    background-color: white;
+    display: none;
+    height: 25em;
+    width: 15em;
+    z-index: 100;
+}
+.popup {
+    z-index: 3;
+}
 .popup {
     text-align: center;
     transition: 1s;
@@ -80,7 +91,7 @@ input {
 .spot {
     background: var(--spot-blue);
     transform: translate(-50%);
-    position: relative;
+    position: absolute;
     height: 5em;
     width: 5em;
     border-radius: 50%;
@@ -105,7 +116,7 @@ input {
     border: solid 30px;
     border-radius: 55% 55% 15% 15%;
     border-color: var(--boat-brown);
-    z-index: 5;
+    z-index: 2;
 }
 .spot-pond {
     position: absolute;
@@ -114,4 +125,5 @@ input {
     transform: translate(-50%);
     height: 90%;
     width: 95%;
+    z-index: 1;
     }

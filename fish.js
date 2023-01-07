@@ -26,6 +26,7 @@ function catchFish(e) {
     const eBox = e.getBoundingClientRect()
     boat.style.left = `${parseInt(eBox.left - 100)}px`
     boat.style.top = `${parseInt(eBox.top - 100)}px`
+    setTimeout(toggleGame, 1000)
     fishing = true
     boatMovable = false
     fishButton.style.display = "none"
@@ -78,7 +79,17 @@ function showFish(fish) {
     typerow.appendChild(type)
     patternrow.appendChild(pattern)
     colorrow.appendChild(color)
-    togglePopup()
+    // TogglePopup()
+}
+function toggleGame() {
+    const gamePopup = document.getElementById("gamePopup")
+    gamePopup.classList.toggle("visible")
+    gamePopup.style.left = `${parseInt(currentSpot.style.left) + 100}px`
+    gamePopup.style.top = `${parseInt(currentSpot.style.top) - 80}px`
+    if(parseInt(gamePopup.style.top) < 0) {
+        console.log("aaaaaaaaaa")
+        gamePopup.style.top = "10px"
+    }
 }
 function togglePopup() {
     const popup = document.getElementById("popup")
@@ -91,5 +102,5 @@ function throwBack() {
     patternrow.removeChild(document.getElementById("patterncell"))
     colorrow.removeChild(document.getElementById("colorcell"))
     togglePopup()
-    setTimeout(unlockBoat, 1000)
+    setTimeout(unlockBoat, 10)
 }
