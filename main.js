@@ -21,6 +21,12 @@ function moveButton(e) {
     fishButton.style.left = `${parseInt(boat.style.left) - 80}px`
     fishButton.style.top = `${parseInt(boat.style.top) - 80}px`
     fishButton.style.display = "inline-block"
+    if(parseInt(fishButton.style.left) < 10) {
+        fishButton.style.left = "15px"
+    }
+    if(parseInt(fishButton.style.top) < 5) {
+        fishButton.style.top = "5px"
+    }
     if (!hasClickListener) {
         fishButton.addEventListener("click", () => {
             // CatchFish(e)

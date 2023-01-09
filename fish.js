@@ -81,16 +81,6 @@ function showFish(fish) {
     colorrow.appendChild(color)
     // TogglePopup()
 }
-function toggleGame() {
-    const gamePopup = document.getElementById("gamePopup")
-    gamePopup.classList.toggle("visible")
-    gamePopup.style.left = `${parseInt(currentSpot.style.left) + 100}px`
-    gamePopup.style.top = `${parseInt(currentSpot.style.top) - 80}px`
-    if(parseInt(gamePopup.style.top) < 0) {
-        console.log("aaaaaaaaaa")
-        gamePopup.style.top = "10px"
-    }
-}
 function togglePopup() {
     const popup = document.getElementById("popup")
     console.log("toggling")
