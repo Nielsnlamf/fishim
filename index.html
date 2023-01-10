@@ -20,11 +20,11 @@
         </div>
         <div class="popup" id="popup">
             <h1>You caught a fish!</h1>
-            <div class="fish">
+            <div class="fish" id="fishdiv">
                 <div id="fishtail" class="fishtail fishpart"></div>
                 <div id="fishbody" class="fishbody fishpart"></div>
             </div>
-            <table>
+            <table id="infotable">
                 <tr id="lengthrow">
                     <th>Length:</td>
                 </tr>
@@ -37,9 +37,12 @@
                 <tr id="colorrow">
                     <th>Color:</td>
                 </tr>
+                <tr id="timerow">
+                    <th>Time taken:</td>
+                </tr>
             </table>
             <div class="buttons">
-                <input type="button" value="Add to favorites" />
+                <input type="button" id="favbutton" value="Add to favorites" />
                 <input type="button" onclick="throwBack()" id="throwButton" value="Throw back" />
             </div>
         </div>

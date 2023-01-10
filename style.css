@@ -22,10 +22,12 @@ input {
 }
 .gamePopup {
     position: absolute;
+    margin: 0;
+    padding: 0;
     background-color: white;
     display: none;
-    height: 25em;
-    width: 15em;
+    height: fit-content;
+    width: fit-content;
     z-index: 100;
 }
 .popup {
@@ -78,6 +80,9 @@ input {
     height: 10em;
     border-radius: 50%;
     background-color: green;
+}
+.hidden {
+    display: none;
 }
 .pond {
     position: absolute;

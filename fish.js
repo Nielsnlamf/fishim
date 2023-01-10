@@ -31,55 +31,70 @@ function catchFish(e) {
     boatMovable = false
     fishButton.style.display = "none"
     setTimeout(() => { rotateLock = true }, 1100)
-    showFish(createFish())
 }
 function createFish() {
     const newFish = new Fish(Math.floor(Math.random() * 20), types[Math.floor(Math.random() * types.length)], patterns[Math.floor(Math.random() * patterns.length)], colors[Math.floor(Math.random() * colors.length)])
     return newFish
 }
-function showFish(fish) {
+function showFish(fish = null) {
     const fishtail = document.getElementById("fishtail")
     const fishbody = document.getElementById("fishbody")
     const popup = document.getElementById("popup")
     console.log(fish)
-    switch (fish.color) {
-    case "black":
-        console.log("black")
-        fishtail.style.borderColor = "transparent transparent transparent black"
-        fishbody.style.backgroundColor = "black"
-        break
-    case "blue":
-        console.log("blue")
-        fishtail.style.borderColor = "transparent transparent transparent blue"
-        fishbody.style.backgroundColor = "blue"
-        break
-    case "white":
-        console.log("white")
-        fishtail.style.borderColor = "transparent transparent transparent grey"
-        fishbody.style.backgroundColor = "grey"
-        break
-    }
     // Lengthrow = document.getElementById("lengthrow")
     // typerow = document.getElementById("typerow")
     // patternrow = document.getElementById("patternrow")
     // colorrow = document.getElementById("colorrow")
-    length = document.createElement("td")
-    length.innerHTML = `${fish.length}`
-    length.setAttribute("id", "lengthcell")
-    const type = document.createElement("td")
-    type.innerHTML = `${fish.type}`
-    type.setAttribute("id", "typecell")
-    const pattern = document.createElement("td")
-    pattern.innerHTML = `${fish.pattern}`
-    pattern.setAttribute("id", "patterncell")
-    const color = document.createElement("td")
-    color.innerHTML = `${fish.color}`
-    color.setAttribute("id", "colorcell")
-    lengthrow.appendChild(length)
-    typerow.appendChild(type)
-    patternrow.appendChild(pattern)
-    colorrow.appendChild(color)
+    if (fish) {
+        document.getElementById("fishdiv").classList.remove("hidden")
+        document.getElementById("fishtail").classList.remove("hidden")
+        document.getElementById("fishbody").classList.remove("hidden")
+        document.getElementById("infotable").classList.remove("hidden")
+        switch (fish.color) {
+        case "black":
+            console.log("black")
+            fishtail.style.borderColor = "transparent transparent transparent black"
+            fishbody.style.backgroundColor = "black"
+            break
+        case "blue":
+            console.log("blue")
+            fishtail.style.borderColor = "transparent transparent transparent blue"
+            fishbody.style.backgroundColor = "blue"
+            break
+        case "white":
+            console.log("white")
+            fishtail.style.borderColor = "transparent transparent transparent grey"
+            fishbody.style.backgroundColor = "grey"
+            break
+        }
+        length = document.createElement("td")
+        length.innerHTML = `${fish.length}`
+        length.setAttribute("id", "lengthcell")
+        const type = document.createElement("td")
+        type.innerHTML = `${fish.type}`
+        type.setAttribute("id", "typecell")
+        const pattern = document.createElement("td")
+        pattern.innerHTML = `${fish.pattern}`
+        pattern.setAttribute("id", "patterncell")
+        const color = document.createElement("td")
+        color.innerHTML = `${fish.color}`
+        color.setAttribute("id", "colorcell")
+        const time = document.createElement("td")
+        time.innerHTML = `${timeTaken}`
+        time.setAttribute("id", "timecell")
+        lengthrow.appendChild(length)
+        typerow.appendChild(type)
+        patternrow.appendChild(pattern)
+        colorrow.appendChild(color)
+        timerow.appendChild(time)
+    }
     // TogglePopup()
+    else {
+        document.getElementById("fishdiv").classList.add("hidden")
+        document.getElementById("fishtail").classList.add("hidden")
+        document.getElementById("fishbody").classList.add("hidden")
+        document.getElementById("infotable").classList.add("hidden")
+    }
 }
 function togglePopup() {
     const popup = document.getElementById("popup")
@@ -87,10 +102,13 @@ function togglePopup() {
     popup.classList.toggle("visible")
 }
 function throwBack() {
-    lengthrow.removeChild(document.getElementById("lengthcell"))
-    typerow.removeChild(document.getElementById("typecell"))
-    patternrow.removeChild(document.getElementById("patterncell"))
-    colorrow.removeChild(document.getElementById("colorcell"))
+    if (fishCaught) {
+        lengthrow.removeChild(document.getElementById("lengthcell"))
+        typerow.removeChild(document.getElementById("typecell"))
+        patternrow.removeChild(document.getElementById("patterncell"))
+        colorrow.removeChild(document.getElementById("colorcell"))
+        timerow.removeChild(document.getElementById("timecell"))
+    }
     togglePopup()
     setTimeout(unlockBoat, 10)
 }
