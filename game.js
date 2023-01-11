@@ -13,9 +13,9 @@ let fishCaught = false
 
 canvas.height *= 2.335
 canvas.width *= 0.7
-const net = {"x": canvas.width / 2 - barWidth / 2, "y": canvas.height - netHeight, "w": barWidth, "h": netHeight}
-const gameFish = {"x": canvas.width / 2, "y": canvas.height - barWidth / 2, "r": barWidth / 2}
-const scoreBar = {"x": canvas.width / 4 * 3, "y": canvas.height, "w": 10, "h": canvas.height + 10}
+let net = {"x": canvas.width / 2 - barWidth / 2, "y": canvas.height - netHeight, "w": barWidth, "h": netHeight}
+let gameFish = {"x": canvas.width / 2, "y": canvas.height - barWidth / 2, "r": barWidth / 2}
+let scoreBar = {"x": canvas.width / 4 * 3, "y": canvas.height, "w": 10, "h": canvas.height + 10}
 const ctx = canvas.getContext("2d")
 ctx.fillStyle = "#AAAAAA"
 ctx.beginPath()
@@ -33,13 +33,14 @@ function gameFinished() {
     togglePopup()
     moveSpot(currentSpot)
     timeTaken = 0
-    const net = {"x": canvas.width / 2 - barWidth / 2, "y": canvas.height - netHeight, "w": barWidth, "h": netHeight}
-    const gameFish = {"x": canvas.width / 2, "y": canvas.height - barWidth / 2, "r": barWidth / 2}
-    const scoreBar = {"x": canvas.width / 4 * 3, "y": canvas.height, "w": 10, "h": canvas.height + 10}
-    fishCaught = false
+    net = {"x": canvas.width / 2 - barWidth / 2, "y": canvas.height - netHeight, "w": barWidth, "h": netHeight}
+    gameFish = {"x": canvas.width / 2, "y": canvas.height - barWidth / 2, "r": barWidth / 2}
+    scoreBar = {"x": canvas.width / 4 * 3, "y": canvas.height, "w": 10, "h": canvas.height + 10}
     highestHeight = canvas.height
+    holdingMouse = false
     drawElements()
     clearCanvas()
+    drawElements()
 }
 
 function toggleGame() {
@@ -62,12 +63,14 @@ function toggleGame() {
 }
 
 function game() {
+    fishCaught = false
     console.log("gaming gamers")
     window.addEventListener("mousedown", switchMouseState)
     window.addEventListener("mouseup", switchMouseState)
     targetedY = Math.floor(Math.random() * (canvas.height - gameFish.r * 3) + gameFish.r)
     gameLoop = window.setInterval(() => {
         timeTaken++
+        drawElements()
         clearCanvas()
         drawElements()
         if (holdingMouse) {
@@ -95,6 +98,10 @@ function game() {
         }
         if (scoreBar.y <= 0) {
             fishCaught = true
+            net = {"x": canvas.width / 2 - barWidth / 2, "y": canvas.height - netHeight, "w": barWidth, "h": netHeight}
+            gameFish = {"x": canvas.width / 2, "y": canvas.height - barWidth / 2, "r": barWidth / 2}
+            scoreBar = {"x": canvas.width / 4 * 3, "y": canvas.height, "w": 10, "h": canvas.height + 10}
+            drawElements()
             showFish(createFish())
             gameFinished()
         }

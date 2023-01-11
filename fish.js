@@ -14,11 +14,12 @@ const patternrow = document.getElementById("patternrow")
 const colorrow = document.getElementById("colorrow")
 const hasThrowBackListener = false
 
-function Fish(length, type, pattern, color) {
+function Fish(length, type, pattern, color, value) {
     this.length = length
     this.type = type
     this.pattern = pattern
     this.color = color
+    this.value = value
 }
 
 function catchFish(e) {
@@ -33,7 +34,8 @@ function catchFish(e) {
     setTimeout(() => { rotateLock = true }, 1100)
 }
 function createFish() {
-    const newFish = new Fish(Math.floor(Math.random() * 20), types[Math.floor(Math.random() * types.length)], patterns[Math.floor(Math.random() * patterns.length)], colors[Math.floor(Math.random() * colors.length)])
+    const newFish = new Fish(Math.floor(Math.random() * 20 + 3), types[Math.floor(Math.random() * types.length)], patterns[Math.floor(Math.random() * patterns.length)], colors[Math.floor(Math.random() * colors.length)])
+    newFish.value = newFish.length + typeValues[newFish.type] + patternValues[newFish.pattern] + colorValues[newFish.color]
     return newFish
 }
 function showFish(fish = null) {
@@ -46,6 +48,9 @@ function showFish(fish = null) {
     // patternrow = document.getElementById("patternrow")
     // colorrow = document.getElementById("colorrow")
     if (fish) {
+        document.getElementById("popupTitle").innerHTML = "You caught a Fish!"
+        document.getElementById("again").classList.add("hidden")
+        document.getElementById("scoremsg").classList.add("hidden")
         document.getElementById("fishdiv").classList.remove("hidden")
         document.getElementById("fishtail").classList.remove("hidden")
         document.getElementById("fishbody").classList.remove("hidden")
@@ -82,14 +87,30 @@ function showFish(fish = null) {
         const time = document.createElement("td")
         time.innerHTML = `${timeTaken}`
         time.setAttribute("id", "timecell")
+        const value = document.createElement("td")
+        value.innerHTML = `${fish.value}`
+        value.setAttribute("id", "valuecell")
         lengthrow.appendChild(length)
         typerow.appendChild(type)
         patternrow.appendChild(pattern)
         colorrow.appendChild(color)
         timerow.appendChild(time)
+        valuerow.appendChild(value)
+
+        if (getCookie("highscore")) {
+            if (fish.value > getHighscoreValue()) {
+                setCookie("highscore", generateCookieValue(prompt("New Highscore! Wat is je naam?"), fish), 99999)
+                document.getElementById("scoremsg").classList.remove("hidden")
+            }
+        } else {
+            setCookie("highscore", generateCookieValue(prompt("New Highscore! Wat is je naam?"), fish), 99999)
+            document.getElementById("scoremsg").classList.remove("hidden")
+        }
     }
     // TogglePopup()
     else {
+        document.getElementById("popupTitle").innerHTML = "You didn't catch anything.."
+        document.getElementById("again").classList.remove("hidden")
         document.getElementById("fishdiv").classList.add("hidden")
         document.getElementById("fishtail").classList.add("hidden")
         document.getElementById("fishbody").classList.add("hidden")
@@ -108,6 +129,7 @@ function throwBack() {
         patternrow.removeChild(document.getElementById("patterncell"))
         colorrow.removeChild(document.getElementById("colorcell"))
         timerow.removeChild(document.getElementById("timecell"))
+        valuerow.removeChild(document.getElementById("valuecell"))
     }
     togglePopup()
     setTimeout(unlockBoat, 10)
