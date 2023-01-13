@@ -10,51 +10,49 @@
 </head>
 
 <body>
-    <div class="pond" id="pond">
-        <div class="boat" id="boat"></div>
-        <input type="button" id="fishButton" class="fishButton" value="Catch a fish?" />
-        <div class="gamePopup" id="gamePopup">
-            <canvas id="game">
-            </canvas>
-        </div>
-        <div class="popup" id="popup">
-            <h1 id="popupTitle">You caught a fish!</h1>
-            <h3 id="again">Throw back your line to try again</h3>
-            <div class="fish" id="fishdiv">
-                <div id="fishtail" class="fishtail fishpart"></div>
-                <div id="fishbody" class="fishbody fishpart"></div>
-            </div>
-            <h3 id="scoremsg">Nieuw persoonlijk record!</h3>
-            <table id="infotable">
-                <tr id="lengthrow">
-                    <th>Length:</td>
-                </tr>
-                <tr id="typerow">
-                    <th>Type:</td>
-                </tr>
-                <tr id="patternrow">
-                    <th>Pattern:</td>
-                </tr>
-                <tr id="colorrow">
-                    <th>Color:</td>
-                </tr>
-                <tr id="timerow">
-                    <th>Time taken:</td>
-                </tr>
-                <tr id="valuerow">
-                    <th>Value:</td>
-                </tr>
-            </table>
-            <div class="buttons">
-                <input type="button" onclick="throwBack()" id="throwButton" value="Throw back" />
-            </div>
-        </div>
-        <div id="spot" class="spot"></div>
-        <div id="spot" class="spot"></div>
-        <div id="spot" class="spot"></div>
-        <div id="spot" class="spot"></div>
-        <div id="spot" class="spot"></div>
+    <div class="boat" id="boat"></div>
+    <input type="button" id="fishButton" class="fishButton" value="Catch a fish?" />
+    <div class="gamePopup" id="gamePopup">
+        <canvas id="game">
+        </canvas>
     </div>
+    <div class="popup" id="popup">
+        <h1 id="popupTitle">You caught a fish!</h1>
+        <h3 id="again">Throw back your line to try again</h3>
+        <div class="fish" id="fishdiv">
+            <div id="fishtail" class="fishtail fishpart"></div>
+            <div id="fishbody" class="fishbody fishpart"></div>
+        </div>
+        <h3 id="scoremsg">Nieuw persoonlijk record!</h3>
+        <table id="infotable">
+            <tr id="lengthrow">
+                <th>Length:</td>
+            </tr>
+            <tr id="typerow">
+                <th>Type:</td>
+            </tr>
+            <tr id="patternrow">
+                <th>Pattern:</td>
+            </tr>
+            <tr id="colorrow">
+                <th>Color:</td>
+            </tr>
+            <tr id="timerow">
+                <th>Time taken:</td>
+            </tr>
+            <tr id="valuerow">
+                <th>Value:</td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <input type="button" onclick="throwBack()" id="throwButton" value="Throw back" />
+        </div>
+    </div>
+    <div id="spot" class="spot"></div>
+    <div id="spot" class="spot"></div>
+    <div id="spot" class="spot"></div>
+    <div id="spot" class="spot"></div>
+    <div id="spot" class="spot"></div>
     <script src="main.js"></script>
     <script src="fish.js"></script>
     <script src="game.js"></script>

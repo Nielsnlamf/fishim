@@ -23,7 +23,6 @@ function Fish(length, type, pattern, color, value) {
 }
 
 function catchFish(e) {
-    boat.style.transition = "1s"
     const eBox = e.getBoundingClientRect()
     boat.style.left = `${parseInt(eBox.left - 100)}px`
     boat.style.top = `${parseInt(eBox.top - 100)}px`
@@ -43,10 +42,6 @@ function showFish(fish = null) {
     const fishbody = document.getElementById("fishbody")
     const popup = document.getElementById("popup")
     console.log(fish)
-    // Lengthrow = document.getElementById("lengthrow")
-    // typerow = document.getElementById("typerow")
-    // patternrow = document.getElementById("patternrow")
-    // colorrow = document.getElementById("colorrow")
     if (fish) {
         document.getElementById("popupTitle").innerHTML = "You caught a Fish!"
         document.getElementById("again").classList.add("hidden")
@@ -120,7 +115,7 @@ function showFish(fish = null) {
 function togglePopup() {
     const popup = document.getElementById("popup")
     console.log("toggling")
-    popup.classList.toggle("visible")
+    popup.classList.toggle("flex")
 }
 function throwBack() {
     if (fishCaught) {

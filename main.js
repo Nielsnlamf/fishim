@@ -21,10 +21,10 @@ function moveButton(e) {
     fishButton.style.left = `${parseInt(boat.style.left) - 80}px`
     fishButton.style.top = `${parseInt(boat.style.top) - 80}px`
     fishButton.style.display = "inline-block"
-    if(parseInt(fishButton.style.left) < 10) {
+    if (parseInt(fishButton.style.left) < 10) {
         fishButton.style.left = "15px"
     }
-    if(parseInt(fishButton.style.top) < 5) {
+    if (parseInt(fishButton.style.top) < 5) {
         fishButton.style.top = "5px"
     }
     if (!hasClickListener) {
@@ -63,7 +63,8 @@ setInterval(() => {
                 overlap = true
                 currentSpot = e
                 moveButton(e)
-            } if (!overlap) {
+            }
+            if (!overlap) {
                 fishButton.style.display = "none"
             }
         }
@@ -75,36 +76,31 @@ setInterval(() => {
         const boat = document.getElementById("boat")
         const boatBox = boat.getBoundingClientRect()
         const centerPoint = window.getComputedStyle(boat).transformOrigin
-        const centers = centerPoint.split(" ")
-        // Const centerY = boatBox.top + parseInt(centers[1]) - window.pageYOffset
-        // const centerX = boatBox.left + parseInt(centers[0]) - window.pageXOffset
         const centerX = boatBox.left + boatBox.width / 2 - window.pageXOffset
         const centerY = boatBox.top + boatBox.height / 2 - window.pageYOffset
         const radians = Math.atan2(mouseX - centerX, mouseY - centerY)
         const degree = radians * (180 / Math.PI) * -1 + 180
         boat.style.transform = `rotate(${degree}deg)`
-        boat.style.transition = "0s"
     }
 }, 1)
 
 window.addEventListener("click", e => {
     if (boatMovable) {
-        boat.style.transition = "1s"
         boat.style.left = `${mouseX}px`
         boat.style.top = `${mouseY}px`
     }
 })
 
 function moveSpot(e) {
-    e.style.left = `${Math.floor(Math.random() * 1700)}px`
-    e.style.top = `${Math.floor(Math.random() * 700)}px`
-    while (checkOverlap(e, popup)) {
-        e.style.left = `${Math.floor(Math.random() * 1700)}px`
-        e.style.top = `${Math.floor(Math.random() * 700)}px`
-    }
-    while (!checkOverlap(e, pond)) {
-        e.style.left = `${Math.floor(Math.random() * 1700)}px`
-        e.style.top = `${Math.floor(Math.random() * 700)}px`
+    const widthBase = document.body.scrollWidth * 0.1
+    const widthRandomPart = document.body.scrollWidth * 0.8
+    const heightBase = document.body.scrollHeight * 0.1
+    const heightRandomPart = document.body.scrollHeight * 0.8
+    e.style.left = `${Math.floor(widthBase + Math.random() * widthRandomPart)}px`
+    e.style.top = `${Math.floor(heightBase + Math.random() * heightRandomPart)}px`
+    while (!checkOverlap(e, document.body)) {
+        e.style.left = `${Math.floor(widthBase + Math.random() * widthRandomPart)}px`
+        e.style.top = `${Math.floor(heightBase + Math.random() * heightRandomPart)}px`
     }
 }
 window.addEventListener("DOMContentLoaded", () => {
