@@ -54,11 +54,18 @@ function toggleGame() {
     if (parseInt(gamePopup.style.left) > 1710) {
         gamePopup.style.left = "1700px"
     }
+    if (document.body.scrollWidth < 700) {
+        gamePopup.style.left = "50%"
+        gamePopup.style.top = "25%"
+        gamePopup.style.transform = "translate(-50%)"
+    }
     playing = !playing
     if (playing) { setTimeout(game(), 3000) } else {
         window.clearInterval(gameLoop)
         window.removeEventListener("mousedown", switchMouseState)
         window.removeEventListener("mouseup", switchMouseState)
+        window.removeEventListener("touchstart", switchMouseState)
+        window.removeEventListener("touchend", switchMouseState)
     }
 }
 
@@ -67,6 +74,8 @@ function game() {
     console.log("gaming gamers")
     window.addEventListener("mousedown", switchMouseState)
     window.addEventListener("mouseup", switchMouseState)
+    window.addEventListener("touchstart", switchMouseState)
+    window.addEventListener("touchend", switchMouseState)
     targetedY = Math.floor(Math.random() * (canvas.height - gameFish.r * 3) + gameFish.r)
     gameLoop = window.setInterval(() => {
         timeTaken++

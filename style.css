@@ -10,6 +10,7 @@ html, body {
     width: 100vw;
     padding: 0;
     margin: 0;
+    overflow: hidden;
 }
 input {
     border-radius: 10%;

@@ -75,7 +75,6 @@ setInterval(() => {
     if (!rotateLock) {
         const boat = document.getElementById("boat")
         const boatBox = boat.getBoundingClientRect()
-        const centerPoint = window.getComputedStyle(boat).transformOrigin
         const centerX = boatBox.left + boatBox.width / 2 - window.pageXOffset
         const centerY = boatBox.top + boatBox.height / 2 - window.pageYOffset
         const radians = Math.atan2(mouseX - centerX, mouseY - centerY)
@@ -103,9 +102,8 @@ function moveSpot(e) {
         e.style.top = `${Math.floor(heightBase + Math.random() * heightRandomPart)}px`
     }
 }
-window.addEventListener("DOMContentLoaded", () => {
-    const popup = document.getElementById("popup")
-    const pond = document.getElementById("pond")
+
+const generateSpots = () => {
     for (let i = 0; i < document.querySelectorAll("#spot").length; i++) {
         const e = document.querySelectorAll("#spot")[i]
         moveSpot(e)
@@ -113,4 +111,8 @@ window.addEventListener("DOMContentLoaded", () => {
             checkOverlap(e, document.querySelectorAll("#spot")[i]) ? moveSpot(e) : {}
         }
     }
-})
+    boat.style.left = "50%"
+    boat.style.top = "50%"
+}
+window.addEventListener("DOMContentLoaded", generateSpots)
+window.addEventListener("resize", generateSpots)
